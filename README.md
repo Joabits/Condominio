@@ -1,7 +1,0 @@
-# Condominio
-
-
-holla
-
-la verda 
-
