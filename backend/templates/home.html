@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 90%;
+            margin: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 20px 0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .endpoint {
+            background: white;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            border: 1px solid #e9ecef;
+        }
+        
+        .endpoint.post {
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .endpoint.get {
+            border-left: 3px solid #27ae60;
+        }
+        
+        .endpoint.put {
+            border-left: 3px solid #f39c12;
+        }
+        
+        .credentials {
+            background: #e8f5e8;
+            border: 1px solid #27ae60;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .credentials h3 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+        
+        .cred-item {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .links {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .link-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 5px 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .link-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏢</div>
+            <h1>Smart Condominio</h1>
+            <p class="subtitle">Backend API - {{ version }}</p>
+            <span class="status">✅ Servidor Activo</span>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🔐 Autenticación</h3>
+                <div class="endpoint post">POST /api/auth/login/</div>
+                <div class="endpoint post">POST /api/auth/logout/</div>
+                <div class="endpoint post">POST /api/auth/registro/</div>
+                <div class="endpoint post">POST /api/token/</div>
+                <div class="endpoint post">POST /api/token/refresh/</div>
+            </div>
+            
+            <div class="card">
+                <h3>📊 Dashboard</h3>
+                <div class="endpoint get">GET /api/dashboard/</div>
+                <div class="endpoint get">GET /api/quick-actions/</div>
+            </div>
+            
+            <div class="card">
+                <h3>💰 Finanzas</h3>
+                <div class="endpoint get">GET /api/finanzas/</div>
+                <div class="endpoint post">POST /api/finanzas/pagar/</div>
+            </div>
+            
+            <div class="card">
+                <h3>🏊‍♂️ Áreas Comunes</h3>
+                <div class="endpoint get">GET /api/areas/</div>
+                <div class="endpoint post">POST /api/areas/reservar/</div>
+            </div>
+            
+            <div class="card">
+                <h3>🔔 Notificaciones</h3>
+                <div class="endpoint get">GET /api/notificaciones/</div>
+            </div>
+            
+            <div class="card">
+                <h3>👤 Perfil</h3>
+                <div class="endpoint get">GET /api/perfil/</div>
+                <div class="endpoint put">PUT /api/perfil/</div>
+            </div>
+        </div>
+        
+        <div class="credentials">
+            <h3>🔑 Credenciales de Demo</h3>
+            <div class="cred-item"><strong>Email:</strong> demo@condominio.com</div>
+            <div class="cred-item"><strong>Contraseña:</strong> 123456</div>
+        </div>
+        
+        <div class="links">
+            <a href="/admin/" class="link-btn">🛠️ Panel de Admin</a>
+            <a href="/api/dashboard/" class="link-btn">📊 API Dashboard</a>
+            <a href="/api-auth/" class="link-btn">🔐 API Auth</a>
+        </div>
+        
+        <div class="footer">
+            <p>Smart Condominio - Gestión Inteligente de Condominios</p>
+            <p>Desarrollado con Django REST Framework</p>
+        </div>
+    </div>
+</body>
+</html>

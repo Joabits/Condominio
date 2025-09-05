@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
+from .api_views import api_home, home_view
 
 # Router para ViewSets de DRF
 router = DefaultRouter()
@@ -8,6 +9,12 @@ router = DefaultRouter()
 urlpatterns = [
     # URLs de la API REST
     path('api/', include(router.urls)),
+    
+    # =====================================
+    # PÁGINA DE INICIO
+    # =====================================
+    path('', home_view, name='home'),  # Vista HTML de bienvenida
+    path('api/', api_home, name='api-home'),  # Vista JSON de la API
     
     # =====================================
     # AUTENTICACIÓN

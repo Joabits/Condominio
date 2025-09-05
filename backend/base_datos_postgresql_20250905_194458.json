@@ -1,0 +1,888 @@
+[
+  {
+    "model": "comunidad.condominio",
+    "pk": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+    "fields": {
+      "nombre": "Residencial Las Torres",
+      "direccion": "Av. Banzer Km 9, Entre 4to y 5to Anillo, Santa Cruz de la Sierra",
+      "telefono": "+591 3 123-4567",
+      "email": "administracion@lastorres.com",
+      "nit": "1023456789012",
+      "codigo_postal": "0000",
+      "ciudad": "Santa Cruz de la Sierra",
+      "pais": "Bolivia",
+      "logo": "",
+      "activo": true,
+      "fecha_creacion": "2025-09-05T23:36:52.744Z"
+    }
+  },
+  {
+    "model": "comunidad.tipousuario",
+    "pk": 3,
+    "fields": {
+      "tipo": "ADMINISTRADOR",
+      "descripcion": "Administrador del Condominio",
+      "permisos_especiales": {}
+    }
+  },
+  {
+    "model": "comunidad.tipousuario",
+    "pk": 4,
+    "fields": {
+      "tipo": "PROPIETARIO",
+      "descripcion": "Propietario de Unidad",
+      "permisos_especiales": {}
+    }
+  },
+  {
+    "model": "comunidad.tipousuario",
+    "pk": 5,
+    "fields": {
+      "tipo": "INQUILINO",
+      "descripcion": "Inquilino",
+      "permisos_especiales": {}
+    }
+  },
+  {
+    "model": "comunidad.tipousuario",
+    "pk": 6,
+    "fields": {
+      "tipo": "SEGURIDAD",
+      "descripcion": "Personal de Seguridad",
+      "permisos_especiales": {}
+    }
+  },
+  {
+    "model": "comunidad.tipousuario",
+    "pk": 7,
+    "fields": {
+      "tipo": "MANTENIMIENTO",
+      "descripcion": "Personal de Mantenimiento",
+      "permisos_especiales": {}
+    }
+  },
+  {
+    "model": "comunidad.tipousuario",
+    "pk": 8,
+    "fields": {
+      "tipo": "VISITANTE",
+      "descripcion": "Visitante",
+      "permisos_especiales": {}
+    }
+  },
+  {
+    "model": "comunidad.perfilusuario",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "tipo_usuario": 3,
+      "ci": "12345678",
+      "telefono": "+591 70123456",
+      "telefono_emergencia": null,
+      "fecha_nacimiento": "1985-05-15",
+      "foto_perfil": "",
+      "facial_encoding": null,
+      "facial_images": [],
+      "activo": true,
+      "fecha_registro": "2025-09-05T23:36:53.280Z",
+      "ultimo_acceso": null
+    }
+  },
+  {
+    "model": "comunidad.perfilusuario",
+    "pk": 3,
+    "fields": {
+      "user": 4,
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "tipo_usuario": 4,
+      "ci": "98765432",
+      "telefono": "+591 70111222",
+      "telefono_emergencia": null,
+      "fecha_nacimiento": "1978-04-12",
+      "foto_perfil": "",
+      "facial_encoding": null,
+      "facial_images": [],
+      "activo": true,
+      "fecha_registro": "2025-09-05T23:36:53.821Z",
+      "ultimo_acceso": null
+    }
+  },
+  {
+    "model": "comunidad.perfilusuario",
+    "pk": 4,
+    "fields": {
+      "user": 5,
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "tipo_usuario": 4,
+      "ci": "13579246",
+      "telefono": "+591 70222333",
+      "telefono_emergencia": null,
+      "fecha_nacimiento": "1983-09-28",
+      "foto_perfil": "",
+      "facial_encoding": null,
+      "facial_images": [],
+      "activo": true,
+      "fecha_registro": "2025-09-05T23:36:54.376Z",
+      "ultimo_acceso": null
+    }
+  },
+  {
+    "model": "comunidad.perfilusuario",
+    "pk": 5,
+    "fields": {
+      "user": 6,
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "tipo_usuario": 4,
+      "ci": "24681357",
+      "telefono": "+591 70333444",
+      "telefono_emergencia": null,
+      "fecha_nacimiento": "1980-12-03",
+      "foto_perfil": "",
+      "facial_encoding": null,
+      "facial_images": [],
+      "activo": true,
+      "fecha_registro": "2025-09-05T23:36:54.933Z",
+      "ultimo_acceso": null
+    }
+  },
+  {
+    "model": "comunidad.perfilusuario",
+    "pk": 6,
+    "fields": {
+      "user": 7,
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "tipo_usuario": 4,
+      "ci": "97531864",
+      "telefono": "+591 70444555",
+      "telefono_emergencia": null,
+      "fecha_nacimiento": "1985-02-17",
+      "foto_perfil": "",
+      "facial_encoding": null,
+      "facial_images": [],
+      "activo": true,
+      "fecha_registro": "2025-09-05T23:36:55.474Z",
+      "ultimo_acceso": null
+    }
+  },
+  {
+    "model": "comunidad.perfilusuario",
+    "pk": 7,
+    "fields": {
+      "user": 8,
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "tipo_usuario": 4,
+      "ci": "86420975",
+      "telefono": "+591 70555666",
+      "telefono_emergencia": null,
+      "fecha_nacimiento": "1976-06-09",
+      "foto_perfil": "",
+      "facial_encoding": null,
+      "facial_images": [],
+      "activo": true,
+      "fecha_registro": "2025-09-05T23:36:56.010Z",
+      "ultimo_acceso": null
+    }
+  },
+  {
+    "model": "comunidad.tipounidad",
+    "pk": 2,
+    "fields": {
+      "nombre": "Departamento 1 Dorm",
+      "descripcion": "Departamento de 1 dormitorio",
+      "factor_costo": "0.80"
+    }
+  },
+  {
+    "model": "comunidad.tipounidad",
+    "pk": 3,
+    "fields": {
+      "nombre": "Departamento 2 Dorm",
+      "descripcion": "Departamento de 2 dormitorios",
+      "factor_costo": "1.00"
+    }
+  },
+  {
+    "model": "comunidad.tipounidad",
+    "pk": 4,
+    "fields": {
+      "nombre": "Departamento 3 Dorm",
+      "descripcion": "Departamento de 3 dormitorios",
+      "factor_costo": "1.30"
+    }
+  },
+  {
+    "model": "comunidad.tipounidad",
+    "pk": 5,
+    "fields": {
+      "nombre": "Penthouse",
+      "descripcion": "Penthouse de lujo",
+      "factor_costo": "2.00"
+    }
+  },
+  {
+    "model": "comunidad.tipounidad",
+    "pk": 6,
+    "fields": {
+      "nombre": "Oficina",
+      "descripcion": "Oficina comercial",
+      "factor_costo": "0.60"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "6280a479-7a63-4298-b2d7-6303dfbe18c0",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-101",
+      "tipo_unidad": 3,
+      "piso": 1,
+      "bloque": "A",
+      "metros_cuadrados": "75.50",
+      "dormitorios": 2,
+      "baños": 2,
+      "porcentaje_propiedad": "2.50",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.014Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "f617019b-235b-4291-8ecf-2dc10ce9dbb0",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-102",
+      "tipo_unidad": 2,
+      "piso": 1,
+      "bloque": "A",
+      "metros_cuadrados": "55.00",
+      "dormitorios": 1,
+      "baños": 1,
+      "porcentaje_propiedad": "1.80",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.014Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "911fd0be-2086-4b78-be96-1a0fcc6ff28a",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-103",
+      "tipo_unidad": 3,
+      "piso": 1,
+      "bloque": "A",
+      "metros_cuadrados": "80.00",
+      "dormitorios": 2,
+      "baños": 2,
+      "porcentaje_propiedad": "2.60",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.015Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "c9e932ee-a2a1-4123-8643-c62ebfb8db57",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-201",
+      "tipo_unidad": 3,
+      "piso": 2,
+      "bloque": "A",
+      "metros_cuadrados": "75.50",
+      "dormitorios": 2,
+      "baños": 2,
+      "porcentaje_propiedad": "2.50",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.015Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "a39e1626-ed1c-42da-b83e-22fb18470aa9",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-202",
+      "tipo_unidad": 2,
+      "piso": 2,
+      "bloque": "A",
+      "metros_cuadrados": "55.00",
+      "dormitorios": 1,
+      "baños": 1,
+      "porcentaje_propiedad": "1.80",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.015Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "916ae839-3ac8-4d2a-949f-e2d68964e3ee",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-203",
+      "tipo_unidad": 3,
+      "piso": 2,
+      "bloque": "A",
+      "metros_cuadrados": "80.00",
+      "dormitorios": 2,
+      "baños": 2,
+      "porcentaje_propiedad": "2.60",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.016Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "82aa5767-4770-47a8-95dd-acd4786a2c0c",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-301",
+      "tipo_unidad": 4,
+      "piso": 3,
+      "bloque": "A",
+      "metros_cuadrados": "110.00",
+      "dormitorios": 3,
+      "baños": 3,
+      "porcentaje_propiedad": "3.50",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.016Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "1001ec44-e822-4550-b4df-4b4bf3a4183f",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-302",
+      "tipo_unidad": 3,
+      "piso": 3,
+      "bloque": "A",
+      "metros_cuadrados": "75.50",
+      "dormitorios": 2,
+      "baños": 2,
+      "porcentaje_propiedad": "2.50",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.016Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "898a6da5-c9cf-4866-886c-557ce96981cd",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-401",
+      "tipo_unidad": 4,
+      "piso": 4,
+      "bloque": "A",
+      "metros_cuadrados": "110.00",
+      "dormitorios": 3,
+      "baños": 3,
+      "porcentaje_propiedad": "3.50",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.016Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "fbbfb630-4e18-4a46-9037-8cfc63c2bf42",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "A-PH1",
+      "tipo_unidad": 5,
+      "piso": 5,
+      "bloque": "A",
+      "metros_cuadrados": "180.00",
+      "dormitorios": 4,
+      "baños": 4,
+      "porcentaje_propiedad": "6.00",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.017Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "0df37b7c-05ad-42cc-ab7c-8e46a1530b50",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "B-101",
+      "tipo_unidad": 3,
+      "piso": 1,
+      "bloque": "B",
+      "metros_cuadrados": "78.00",
+      "dormitorios": 2,
+      "baños": 2,
+      "porcentaje_propiedad": "2.60",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.017Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "c1872c2b-5375-45ab-9b72-8d0486bc68c8",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "B-102",
+      "tipo_unidad": 4,
+      "piso": 1,
+      "bloque": "B",
+      "metros_cuadrados": "105.00",
+      "dormitorios": 3,
+      "baños": 2,
+      "porcentaje_propiedad": "3.40",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.017Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "bd8edc23-c3dc-4f31-96dd-bfde328b178f",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "B-201",
+      "tipo_unidad": 3,
+      "piso": 2,
+      "bloque": "B",
+      "metros_cuadrados": "78.00",
+      "dormitorios": 2,
+      "baños": 2,
+      "porcentaje_propiedad": "2.60",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.018Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "437e87f3-53ad-44e0-a2c0-2e6c179c70c2",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "B-202",
+      "tipo_unidad": 4,
+      "piso": 2,
+      "bloque": "B",
+      "metros_cuadrados": "105.00",
+      "dormitorios": 3,
+      "baños": 2,
+      "porcentaje_propiedad": "3.40",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.018Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "343e42fb-3d88-494b-9b1a-fe00dea05e4a",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "B-301",
+      "tipo_unidad": 4,
+      "piso": 3,
+      "bloque": "B",
+      "metros_cuadrados": "115.00",
+      "dormitorios": 3,
+      "baños": 3,
+      "porcentaje_propiedad": "3.70",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.018Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "c24e92e1-ba6d-46f2-98f3-c951d82ff8e8",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "B-PH1",
+      "tipo_unidad": 5,
+      "piso": 5,
+      "bloque": "B",
+      "metros_cuadrados": "200.00",
+      "dormitorios": 4,
+      "baños": 4,
+      "porcentaje_propiedad": "6.50",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.018Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "e8371a97-f7e2-45aa-88b2-3017f9042eec",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "PB-01",
+      "tipo_unidad": 6,
+      "piso": 0,
+      "bloque": "PB",
+      "metros_cuadrados": "35.00",
+      "dormitorios": 0,
+      "baños": 1,
+      "porcentaje_propiedad": "1.20",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.019Z"
+    }
+  },
+  {
+    "model": "comunidad.unidad",
+    "pk": "d7be8e1d-8276-4ab0-8765-380e32b4cd3e",
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "numero": "PB-02",
+      "tipo_unidad": 6,
+      "piso": 0,
+      "bloque": "PB",
+      "metros_cuadrados": "42.00",
+      "dormitorios": 0,
+      "baños": 1,
+      "porcentaje_propiedad": "1.40",
+      "activa": true,
+      "fecha_creacion": "2025-09-05T23:36:56.019Z"
+    }
+  },
+  {
+    "model": "comunidad.residenciaunidad",
+    "pk": 2,
+    "fields": {
+      "usuario": 3,
+      "unidad": "6280a479-7a63-4298-b2d7-6303dfbe18c0",
+      "es_propietario": true,
+      "porcentaje_propiedad": "100.00",
+      "fecha_inicio": "2024-01-01",
+      "fecha_fin": null,
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.residenciaunidad",
+    "pk": 3,
+    "fields": {
+      "usuario": 4,
+      "unidad": "c9e932ee-a2a1-4123-8643-c62ebfb8db57",
+      "es_propietario": true,
+      "porcentaje_propiedad": "100.00",
+      "fecha_inicio": "2024-01-01",
+      "fecha_fin": null,
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.residenciaunidad",
+    "pk": 4,
+    "fields": {
+      "usuario": 5,
+      "unidad": "82aa5767-4770-47a8-95dd-acd4786a2c0c",
+      "es_propietario": true,
+      "porcentaje_propiedad": "100.00",
+      "fecha_inicio": "2024-01-01",
+      "fecha_fin": null,
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.residenciaunidad",
+    "pk": 5,
+    "fields": {
+      "usuario": 6,
+      "unidad": "0df37b7c-05ad-42cc-ab7c-8e46a1530b50",
+      "es_propietario": true,
+      "porcentaje_propiedad": "100.00",
+      "fecha_inicio": "2024-01-01",
+      "fecha_fin": null,
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.residenciaunidad",
+    "pk": 6,
+    "fields": {
+      "usuario": 7,
+      "unidad": "fbbfb630-4e18-4a46-9037-8cfc63c2bf42",
+      "es_propietario": true,
+      "porcentaje_propiedad": "100.00",
+      "fecha_inicio": "2024-01-01",
+      "fecha_fin": null,
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.areacomun",
+    "pk": 5,
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "nombre": "Piscina Principal",
+      "descripcion": "Piscina climatizada con área para niños y adultos",
+      "capacidad_maxima": 30,
+      "precio_por_hora": "80.00",
+      "requiere_deposito": false,
+      "monto_deposito": "0.00",
+      "hora_apertura": "06:00:00",
+      "hora_cierre": "22:00:00",
+      "dias_disponibles": [
+        "lunes",
+        "martes",
+        "miercoles",
+        "jueves",
+        "viernes",
+        "sabado",
+        "domingo"
+      ],
+      "equipamiento": "Piscina climatizada, área para niños, duchas, vestidores",
+      "reglas": "No se permite comida dentro del área de piscina. Uso de gorra obligatorio.",
+      "imagen": "",
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.areacomun",
+    "pk": 6,
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "nombre": "Gimnasio",
+      "descripcion": "Gimnasio completamente equipado con máquinas modernas",
+      "capacidad_maxima": 20,
+      "precio_por_hora": "50.00",
+      "requiere_deposito": false,
+      "monto_deposito": "0.00",
+      "hora_apertura": "05:00:00",
+      "hora_cierre": "23:00:00",
+      "dias_disponibles": [
+        "lunes",
+        "martes",
+        "miercoles",
+        "jueves",
+        "viernes",
+        "sabado",
+        "domingo"
+      ],
+      "equipamiento": "Máquinas de cardio, pesas libres, máquinas de musculación, espejos",
+      "reglas": "Uso de toalla obligatorio. Máximo 1 hora por sesión en horarios pico.",
+      "imagen": "",
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.areacomun",
+    "pk": 7,
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "nombre": "Salón de Eventos",
+      "descripcion": "Salón elegante para celebraciones y eventos familiares",
+      "capacidad_maxima": 80,
+      "precio_por_hora": "200.00",
+      "requiere_deposito": true,
+      "monto_deposito": "500.00",
+      "hora_apertura": "08:00:00",
+      "hora_cierre": "02:00:00",
+      "dias_disponibles": [
+        "viernes",
+        "sabado",
+        "domingo"
+      ],
+      "equipamiento": "Mesas, sillas, equipo de sonido, cocina equipada, aire acondicionado",
+      "reglas": "Prohibido fumar. Música hasta las 24:00. Limpieza obligatoria al finalizar.",
+      "imagen": "",
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.areacomun",
+    "pk": 8,
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "nombre": "Cancha de Tenis",
+      "descripcion": "Cancha de tenis profesional con iluminación nocturna",
+      "capacidad_maxima": 4,
+      "precio_por_hora": "120.00",
+      "requiere_deposito": false,
+      "monto_deposito": "0.00",
+      "hora_apertura": "06:00:00",
+      "hora_cierre": "22:00:00",
+      "dias_disponibles": [
+        "lunes",
+        "martes",
+        "miercoles",
+        "jueves",
+        "viernes",
+        "sabado",
+        "domingo"
+      ],
+      "equipamiento": "Cancha reglamentaria, iluminación LED, red profesional",
+      "reglas": "Calzado deportivo obligatorio. Reservas máximo con 7 días de anticipación.",
+      "imagen": "",
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.areacomun",
+    "pk": 9,
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "nombre": "Área de BBQ",
+      "descripcion": "Área de parrillas al aire libre con vista al jardín",
+      "capacidad_maxima": 25,
+      "precio_por_hora": "60.00",
+      "requiere_deposito": false,
+      "monto_deposito": "0.00",
+      "hora_apertura": "10:00:00",
+      "hora_cierre": "22:00:00",
+      "dias_disponibles": [
+        "sabado",
+        "domingo"
+      ],
+      "equipamiento": "Parrillas a gas, mesas, sillas, fregadero, área verde",
+      "reglas": "Prohibido carbón. Limpieza de parrillas obligatoria. No se permite música alta.",
+      "imagen": "",
+      "activa": true
+    }
+  },
+  {
+    "model": "comunidad.areacomun",
+    "pk": 10,
+    "fields": {
+      "condominio": "ccef2e09-a659-4a6b-aacc-bd36906d1284",
+      "nombre": "Sala de Juegos",
+      "descripcion": "Sala recreativa con juegos para toda la familia",
+      "capacidad_maxima": 15,
+      "precio_por_hora": "40.00",
+      "requiere_deposito": false,
+      "monto_deposito": "0.00",
+      "hora_apertura": "09:00:00",
+      "hora_cierre": "21:00:00",
+      "dias_disponibles": [
+        "lunes",
+        "martes",
+        "miercoles",
+        "jueves",
+        "viernes",
+        "sabado",
+        "domingo"
+      ],
+      "equipamiento": "Mesa de pool, ping pong, futbolín, juegos de mesa, TV",
+      "reglas": "Niños menores de 12 años deben estar acompañados. Cuidar el mobiliario.",
+      "imagen": "",
+      "activa": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "!HA9d0cVfyRm5RVn5dGeg5RYr0WiwCaffIFifXHEs",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@condominio.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-09-05T23:22:42.420Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$KU9jR3rvOpui1I2H8a38sF$I3sVCAZ3qRwaXtCAZMFtVTCBJArEB57cJV/U/jPS0oo=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "admin_general",
+      "first_name": "Carlos",
+      "last_name": "Mendoza",
+      "email": "admin@lastorres.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-05T23:36:52.745Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$sEeCsLBpVfxEScfHOlUHDO$Cs5388zw4bhezfFqFUCI4WrGRCHHmkDoN5YprrGo6ao=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "prop_juan",
+      "first_name": "Juan",
+      "last_name": "Silva Torrez",
+      "email": "juan.silva@email.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-05T23:36:53.282Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$6G5BL98zAV4CdpI7XoHwVX$/RGCx9KhgSFpkw6xCnpmcgXTi/a7Wc3asqzWzlTfdBo=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "prop_ana",
+      "first_name": "Ana",
+      "last_name": "Martínez Vega",
+      "email": "ana.martinez@email.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-05T23:36:53.822Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$bQF5hqZzCGX20loTRxyyBR$WO39PErzBp6yB+v2/acwWoOYSkaucfgbvgbZqcSX/Dk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "prop_miguel",
+      "first_name": "Miguel",
+      "last_name": "López Santos",
+      "email": "miguel.lopez@email.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-05T23:36:54.376Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$OiHquQ9LurqtfLymHNUOS8$/MKapUzRehS3cyTDh94vKnvoV5QHkqzkKg8/5h4NpGY=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "prop_lucia",
+      "first_name": "Lucía",
+      "last_name": "García Flores",
+      "email": "lucia.garcia@email.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-05T23:36:54.933Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$rKKB0lzFGtfHFiUeqkj9gj$2eKU6UCzGjL86md7IcCXci0F86PNzK8BEDGzyXi73CM=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "prop_ricardo",
+      "first_name": "Ricardo",
+      "last_name": "Pérez Moreno",
+      "email": "ricardo.perez@email.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-05T23:36:55.475Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

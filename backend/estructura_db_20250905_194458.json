@@ -1,0 +1,1910 @@
+{
+  "database": "postgresql",
+  "timestamp": "2025-09-05T19:44:58.481490",
+  "tables": {
+    "auth_group": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 150
+        }
+      ]
+    },
+    "auth_group_permissions": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "permission_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "auth_permission": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 255
+        },
+        {
+          "name": "content_type_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "codename",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        }
+      ]
+    },
+    "auth_user": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "password",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 128
+        },
+        {
+          "name": "last_login",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "is_superuser",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "username",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 150
+        },
+        {
+          "name": "first_name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 150
+        },
+        {
+          "name": "last_name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 150
+        },
+        {
+          "name": "email",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 254
+        },
+        {
+          "name": "is_staff",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "date_joined",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "auth_user_groups": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "auth_user_user_permissions": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "permission_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_alertaseguridad": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "tipo_alerta",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 25
+        },
+        {
+          "name": "nivel",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "descripcion",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_hora",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "imagen_evidencia",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "video_evidencia",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "datos_ia",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "confianza_deteccion",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "revisada",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_revision",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "accion_tomada",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "camara_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "revisada_por_id",
+          "type": "bigint",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_areacomun": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "nombre",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "descripcion",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "capacidad_maxima",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "precio_por_hora",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "requiere_deposito",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_deposito",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "hora_apertura",
+          "type": "time without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "hora_cierre",
+          "type": "time without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "dias_disponibles",
+          "type": "jsonb",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "equipamiento",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "reglas",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "imagen",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "activa",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_camaraseguridad": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "nombre",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "ubicacion",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 200
+        },
+        {
+          "name": "ip_address",
+          "type": "inet",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "puerto",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "usuario_camara",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50
+        },
+        {
+          "name": "password_camara",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "reconocimiento_facial",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "deteccion_vehiculos",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "deteccion_anomalias",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activa",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_instalacion",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_condominio": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "nombre",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 200
+        },
+        {
+          "name": "direccion",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "telefono",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20
+        },
+        {
+          "name": "email",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 254
+        },
+        {
+          "name": "nit",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 15
+        },
+        {
+          "name": "codigo_postal",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "ciudad",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "pais",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "logo",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "activo",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_configuracionexpensa": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "periodo_mes",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "periodo_año",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_base_administracion",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_base_mantenimiento",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_base_seguridad",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_base_limpieza",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "multa_retraso_pago",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "dias_gracia",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "porcentaje_mora",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_vencimiento",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activa",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_cuotamantenimiento": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_administracion",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_mantenimiento",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_seguridad",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_limpieza",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_gastos_extras",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_multas",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_mora",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_total",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_pagado",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_pendiente",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "estado",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 15
+        },
+        {
+          "name": "fecha_vencimiento",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_generacion",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_ultimo_pago",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "riesgo_morosidad",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "factores_riesgo",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "configuracion_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "unidad_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_metodopago": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "nombre",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50
+        },
+        {
+          "name": "descripcion",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "requiere_comprobante",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activo",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "es_online",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "proveedor_pago",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50
+        },
+        {
+          "name": "configuracion_api",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_pago": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_pagado",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "numero_transaccion",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "numero_comprobante",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 50
+        },
+        {
+          "name": "comprobante_imagen",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "fecha_pago",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_registro",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "estado",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 12
+        },
+        {
+          "name": "id_transaccion_externa",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 200
+        },
+        {
+          "name": "datos_pago_online",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "observaciones",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_verificacion",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "cuota_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "metodo_pago_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "registrado_por_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "verificado_por_id",
+          "type": "bigint",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_perfilusuario": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "ci",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 15
+        },
+        {
+          "name": "telefono",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20
+        },
+        {
+          "name": "telefono_emergencia",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20
+        },
+        {
+          "name": "fecha_nacimiento",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "foto_perfil",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "facial_encoding",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "facial_images",
+          "type": "jsonb",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activo",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_registro",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "ultimo_acceso",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "tipo_usuario_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_registroacceso": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "tipo_acceso",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "metodo_identificacion",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 15
+        },
+        {
+          "name": "fecha_hora",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "foto_capturada",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "confianza_ia",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "observaciones",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "autorizado",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "camara_id",
+          "type": "bigint",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "usuario_id",
+          "type": "bigint",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "vehiculo_id",
+          "type": "bigint",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "visitante_id",
+          "type": "bigint",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_reservaareacomun": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_reserva",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "hora_inicio",
+          "type": "time without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "hora_fin",
+          "type": "time without time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "numero_personas",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "proposito",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 200
+        },
+        {
+          "name": "observaciones",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "estado",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 12
+        },
+        {
+          "name": "monto_total",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "deposito_pagado",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "area_comun_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "usuario_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_residenciaunidad": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "es_propietario",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "porcentaje_propiedad",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_inicio",
+          "type": "date",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_fin",
+          "type": "date",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activa",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "usuario_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "unidad_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_tipogasto": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "nombre",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "descripcion",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "es_fijo",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "monto_fijo",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activo",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_tipounidad": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "nombre",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50
+        },
+        {
+          "name": "descripcion",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "factor_costo",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_tipousuario": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "tipo",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 15
+        },
+        {
+          "name": "descripcion",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "permisos_especiales",
+          "type": "jsonb",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_unidad": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "numero",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "piso",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "bloque",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "metros_cuadrados",
+          "type": "numeric",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "dormitorios",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "baños",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "porcentaje_propiedad",
+          "type": "numeric",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activa",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "condominio_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "tipo_unidad_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_vehiculo": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "placa",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "tipo",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "marca",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50
+        },
+        {
+          "name": "modelo",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 50
+        },
+        {
+          "name": "año",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "color",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 30
+        },
+        {
+          "name": "foto",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "activo",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_registro",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "propietario_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "comunidad_visitante": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "nombre",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "ci",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 15
+        },
+        {
+          "name": "telefono",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 20
+        },
+        {
+          "name": "motivo_visita",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 200
+        },
+        {
+          "name": "fecha_hora_entrada",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "fecha_hora_salida",
+          "type": "timestamp with time zone",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "foto_entrada",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "vehiculo_placa",
+          "type": "character varying",
+          "nullable": true,
+          "default": null,
+          "max_length": 10
+        },
+        {
+          "name": "facial_encoding",
+          "type": "jsonb",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "activo",
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "autorizado_por_id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "unidad_destino_id",
+          "type": "uuid",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "django_admin_log": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "action_time",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "object_id",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "object_repr",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 200
+        },
+        {
+          "name": "action_flag",
+          "type": "smallint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "change_message",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "content_type_id",
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "django_content_type": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "app_label",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        },
+        {
+          "name": "model",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 100
+        }
+      ]
+    },
+    "django_migrations": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "app",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 255
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 255
+        },
+        {
+          "name": "applied",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    },
+    "django_session": {
+      "columns": [
+        {
+          "name": "session_key",
+          "type": "character varying",
+          "nullable": false,
+          "default": null,
+          "max_length": 40
+        },
+        {
+          "name": "session_data",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        },
+        {
+          "name": "expire_date",
+          "type": "timestamp with time zone",
+          "nullable": false,
+          "default": null,
+          "max_length": null
+        }
+      ]
+    }
+  }
+}
