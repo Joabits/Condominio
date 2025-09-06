@@ -3,11 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  // URL base del API - Cambiar por la IP local de tu servidor Django
-  static const String baseUrl = 'http://10.0.2.2:8000'; // Para emulador Android
+  // URL base del API - Configurado para localhost donde corre Django
+  static const String baseUrl = 'http://127.0.0.1:8000'; // Para testing local
+  // static const String baseUrl = 'http://10.0.2.2:8000'; // Para emulador Android
   // static const String baseUrl = 'http://192.168.1.3:8000'; // Para dispositivo físico  
   // static const String baseUrl = 'http://localhost:8000'; // Para web
-  // static const String baseUrl = 'http://127.0.0.1:8000'; // Para iOS simulator
   
   static String? _accessToken;
   static String? _refreshToken;
@@ -125,6 +125,9 @@ class ApiService {
   // =====================================
 
   static Future<Map<String, dynamic>?> login(String email, String password) async {
+    print('🔄 Intentando login con: $email');
+    print('🌐 URL: $baseUrl/api/auth/login/');
+    
     final response = await _makeRequest(
       'POST',
       '/api/auth/login/',
@@ -135,10 +138,19 @@ class ApiService {
       retry: false,
     );
 
+    print('📊 Status de respuesta: ${response?.statusCode}');
+    print('📋 Cuerpo de respuesta: ${response?.body}');
+
     if (response?.statusCode == 200) {
+      print('✅ Login exitoso');
       final data = jsonDecode(response!.body);
       await saveTokens(data['access_token'], data['refresh_token']);
       return data;
+    } else {
+      print('❌ Error de login: ${response?.statusCode}');
+      if (response?.body != null) {
+        print('📄 Detalle del error: ${response!.body}');
+      }
     }
     
     return null;

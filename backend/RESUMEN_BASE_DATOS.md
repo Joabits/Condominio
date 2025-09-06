@@ -152,17 +152,18 @@
 - **Password:** Admin2025!
 - **URL:** http://127.0.0.1:8000/admin/
 
-### API Móvil (Propietarios)
+### API Móvil (Propietarios - Credenciales Reales)
 - **Email:** juan.silva@email.com
 - **Password:** Prop2025!
+- **API Base:** http://127.0.0.1:8000/api/ (Testing local)
 - **API Base:** http://10.0.2.2:8000/api/ (Emulador Android)
 - **API Base:** http://192.168.1.3:8000/api/ (Dispositivo físico)
 
-### Otros Propietarios
-- ana.martinez@email.com / Prop2025!
-- miguel.lopez@email.com / Prop2025!
-- lucia.garcia@email.com / Prop2025!
-- ricardo.perez@email.com / Prop2025!
+### Otros Propietarios Disponibles
+- ana.martinez@email.com / Prop2025! (Ana Martínez Vega - Unidad A-201)
+- miguel.lopez@email.com / Prop2025! (Miguel López Santos - Unidad A-301)
+- lucia.garcia@email.com / Prop2025! (Lucía García Flores - Unidad B-101)
+- ricardo.perez@email.com / Prop2025! (Ricardo Pérez Moreno - Unidad A-PH1)
 
 ---
 

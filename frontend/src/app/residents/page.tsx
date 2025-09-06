@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import apiService, { PerfilUsuario } from '../../services/api';
 import { 
   Users, 
   UserPlus, 
@@ -19,27 +20,9 @@ import {
   Car,
   Shield,
   AlertTriangle,
-  CheckCircle
+  CheckCircle,
+  Loader
 } from 'lucide-react';
-
-interface Resident {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  apartment: string;
-  role: 'owner' | 'tenant' | 'family';
-  status: 'active' | 'inactive' | 'pending';
-  moveInDate: string;
-  emergencyContact: {
-    name: string;
-    phone: string;
-    relationship: string;
-  };
-  vehicles: number;
-  pets: boolean;
-  avatar?: string;
-}
 
 interface ResidentStats {
   totalResidents: number;
@@ -49,169 +32,164 @@ interface ResidentStats {
 }
 
 export default function ResidentsPage() {
-  const [residents, setResidents] = useState<Resident[]>([]);
+  const [residents, setResidents] = useState<PerfilUsuario[]>([]);
   const [stats, setStats] = useState<ResidentStats>({
-    totalResidents: 85,
-    activeResidents: 82,
-    newThisMonth: 3,
-    occupancyRate: 94.2
+    totalResidents: 0,
+    activeResidents: 0,
+    newThisMonth: 0,
+    occupancyRate: 0
   });
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRole, setSelectedRole] = useState('all');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simular datos de residentes
-    const mockResidents: Resident[] = [
-      {
-        id: '1',
-        name: 'Juan Carlos Pérez',
-        email: 'juan.perez@email.com',
-        phone: '+1 555-0123',
-        apartment: 'Apt 101',
-        role: 'owner',
-        status: 'active',
-        moveInDate: '2023-03-15',
-        emergencyContact: {
-          name: 'María Pérez',
-          phone: '+1 555-0124',
-          relationship: 'Esposa'
-        },
-        vehicles: 2,
-        pets: true
-      },
-      {
-        id: '2',
-        name: 'María Elena García',
-        email: 'maria.garcia@email.com',
-        phone: '+1 555-0125',
-        apartment: 'Apt 205',
-        role: 'tenant',
-        status: 'active',
-        moveInDate: '2023-06-01',
-        emergencyContact: {
-          name: 'Carlos García',
-          phone: '+1 555-0126',
-          relationship: 'Hermano'
-        },
-        vehicles: 1,
-        pets: false
-      },
-      {
-        id: '3',
-        name: 'Roberto Silva',
-        email: 'roberto.silva@email.com',
-        phone: '+1 555-0127',
-        apartment: 'Apt 308',
-        role: 'owner',
-        status: 'pending',
-        moveInDate: '2024-01-15',
-        emergencyContact: {
-          name: 'Ana Silva',
-          phone: '+1 555-0128',
-          relationship: 'Madre'
-        },
-        vehicles: 1,
-        pets: true
-      },
-      {
-        id: '4',
-        name: 'Ana Martínez',
-        email: 'ana.martinez@email.com',
-        phone: '+1 555-0129',
-        apartment: 'Apt 412',
-        role: 'family',
-        status: 'active',
-        moveInDate: '2022-11-20',
-        emergencyContact: {
-          name: 'Luis Martínez',
-          phone: '+1 555-0130',
-          relationship: 'Padre'
-        },
-        vehicles: 0,
-        pets: false
-      },
-      {
-        id: '5',
-        name: 'Luis Fernando Rodríguez',
-        email: 'luis.rodriguez@email.com',
-        phone: '+1 555-0131',
-        apartment: 'Apt 503',
-        role: 'owner',
-        status: 'active',
-        moveInDate: '2023-09-10',
-        emergencyContact: {
-          name: 'Carmen Rodríguez',
-          phone: '+1 555-0132',
-          relationship: 'Esposa'
-        },
-        vehicles: 2,
-        pets: true
-      }
-    ];
-    setResidents(mockResidents);
+    loadResidents();
+    loadStats();
   }, []);
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active':
-        return 'text-green-600 bg-green-100';
-      case 'inactive':
-        return 'text-gray-600 bg-gray-100';
-      case 'pending':
-        return 'text-yellow-600 bg-yellow-100';
-      default:
-        return 'text-gray-600 bg-gray-100';
+  const loadResidents = async () => {
+    try {
+      setLoading(true);
+      const data = await apiService.getUsuarios();
+      setResidents(data);
+      setError(null);
+    } catch (err) {
+      setError('Error al cargar residentes');
+      console.error('Error loading residents:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'active':
-        return 'Activo';
-      case 'inactive':
-        return 'Inactivo';
-      case 'pending':
-        return 'Pendiente';
-      default:
-        return status;
+  const loadStats = async () => {
+    try {
+      const data = await apiService.getEstadisticas();
+      if (data && data.residentes) {
+        setStats({
+          totalResidents: data.residentes.total || residents.length,
+          activeResidents: data.residentes.activos || residents.filter(r => r.activo).length,
+          newThisMonth: data.residentes.nuevos_mes || 0,
+          occupancyRate: data.residentes.tasa_ocupacion || 0
+        });
+      } else {
+        // Estadísticas calculadas localmente
+        setStats({
+          totalResidents: residents.length,
+          activeResidents: residents.filter(r => r.activo).length,
+          newThisMonth: 0,
+          occupancyRate: 0
+        });
+      }
+    } catch (err) {
+      console.error('Error loading stats:', err);
+      // Estadísticas calculadas localmente
+      setStats({
+        totalResidents: residents.length,
+        activeResidents: residents.filter(r => r.activo).length,
+        newThisMonth: 0,
+        occupancyRate: 0
+      });
     }
   };
 
-  const getRoleText = (role: string) => {
-    switch (role) {
-      case 'owner':
+  const getStatusColor = (activo: boolean) => {
+    return activo ? 'text-green-600 bg-green-100' : 'text-red-600 bg-red-100';
+  };
+
+  const getStatusText = (activo: boolean) => {
+    return activo ? 'Activo' : 'Inactivo';
+  };
+
+  const getRoleText = (tipo: string) => {
+    switch (tipo.toUpperCase()) {
+      case 'PROPIETARIO':
         return 'Propietario';
-      case 'tenant':
+      case 'INQUILINO':
         return 'Inquilino';
-      case 'family':
-        return 'Familiar';
+      case 'ADMINISTRADOR':
+        return 'Administrador';
+      case 'SEGURIDAD':
+        return 'Seguridad';
+      case 'MANTENIMIENTO':
+        return 'Mantenimiento';
       default:
-        return role;
+        return tipo;
     }
   };
 
-  const getRoleColor = (role: string) => {
-    switch (role) {
-      case 'owner':
+  const getRoleColor = (tipo: string) => {
+    switch (tipo.toUpperCase()) {
+      case 'PROPIETARIO':
         return 'text-blue-600 bg-blue-100';
-      case 'tenant':
+      case 'INQUILINO':
         return 'text-purple-600 bg-purple-100';
-      case 'family':
+      case 'ADMINISTRADOR':
+        return 'text-red-600 bg-red-100';
+      case 'SEGURIDAD':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'MANTENIMIENTO':
         return 'text-orange-600 bg-orange-100';
       default:
         return 'text-gray-600 bg-gray-100';
     }
   };
 
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('es-ES');
+  };
+
   const filteredResidents = residents.filter(resident => {
-    const matchesStatus = selectedFilter === 'all' || resident.status === selectedFilter;
-    const matchesRole = selectedRole === 'all' || resident.role === selectedRole;
-    const matchesSearch = resident.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         resident.apartment.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         resident.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const isActive = resident.activo;
+    const matchesStatus = selectedFilter === 'all' || 
+                         (selectedFilter === 'active' && isActive) ||
+                         (selectedFilter === 'inactive' && !isActive);
+    
+    const userType = resident.tipo_usuario?.tipo || '';
+    const matchesRole = selectedRole === 'all' || userType.toUpperCase() === selectedRole.toUpperCase();
+    
+    const searchFields = [
+      resident.user.first_name,
+      resident.user.last_name,
+      resident.user.email,
+      resident.ci,
+      resident.telefono
+    ].join(' ').toLowerCase();
+    
+    const matchesSearch = searchFields.includes(searchTerm.toLowerCase());
+    
     return matchesStatus && matchesRole && matchesSearch;
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <p className="text-gray-600">Cargando residentes...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <AlertTriangle className="h-8 w-8 mx-auto mb-4 text-red-600" />
+          <p className="text-gray-600">{error}</p>
+          <button 
+            onClick={loadResidents}
+            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
+            Reintentar
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -252,7 +230,7 @@ export default function ResidentsPage() {
             </div>
             <div className="mt-4 flex items-center">
               <Calendar className="h-4 w-4 text-gray-500 mr-1" />
-              <span className="text-sm text-gray-600">Último: Ayer</span>
+              <span className="text-sm text-gray-600">Registro reciente</span>
             </div>
           </div>
 
@@ -260,7 +238,7 @@ export default function ResidentsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Tasa de Ocupación</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.occupancyRate}%</p>
+                <p className="text-2xl font-bold text-gray-900">{stats.occupancyRate.toFixed(1)}%</p>
               </div>
               <div className="bg-purple-100 p-3 rounded-lg">
                 <Home className="h-6 w-6 text-purple-600" />
@@ -268,15 +246,15 @@ export default function ResidentsPage() {
             </div>
             <div className="mt-4 flex items-center">
               <MapPin className="h-4 w-4 text-gray-500 mr-1" />
-              <span className="text-sm text-gray-600">82 de 87 unidades</span>
+              <span className="text-sm text-gray-600">Residencial Las Torres</span>
             </div>
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Verificaciones Pendientes</p>
-                <p className="text-2xl font-bold text-gray-900">3</p>
+                <p className="text-sm font-medium text-gray-600">Inactivos</p>
+                <p className="text-2xl font-bold text-gray-900">{stats.totalResidents - stats.activeResidents}</p>
               </div>
               <div className="bg-yellow-100 p-3 rounded-lg">
                 <AlertTriangle className="h-6 w-6 text-yellow-600" />
@@ -303,9 +281,12 @@ export default function ResidentsPage() {
             <Download className="h-4 w-4 mr-2" />
             Exportar Datos
           </button>
-          <button className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center">
+          <button 
+            onClick={loadResidents}
+            className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center"
+          >
             <Shield className="h-4 w-4 mr-2" />
-            Verificar Identidades
+            Actualizar
           </button>
         </div>
 
@@ -317,7 +298,7 @@ export default function ResidentsPage() {
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Buscar por nombre, apartamento o email..."
+                  placeholder="Buscar por nombre, CI, email o teléfono..."
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -333,7 +314,6 @@ export default function ResidentsPage() {
                 <option value="all">Todos los estados</option>
                 <option value="active">Activos</option>
                 <option value="inactive">Inactivos</option>
-                <option value="pending">Pendientes</option>
               </select>
               <select
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -341,14 +321,12 @@ export default function ResidentsPage() {
                 onChange={(e) => setSelectedRole(e.target.value)}
               >
                 <option value="all">Todos los roles</option>
-                <option value="owner">Propietarios</option>
-                <option value="tenant">Inquilinos</option>
-                <option value="family">Familiares</option>
+                <option value="PROPIETARIO">Propietarios</option>
+                <option value="INQUILINO">Inquilinos</option>
+                <option value="ADMINISTRADOR">Administradores</option>
+                <option value="SEGURIDAD">Seguridad</option>
+                <option value="MANTENIMIENTO">Mantenimiento</option>
               </select>
-              <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center">
-                <Filter className="h-4 w-4 mr-2" />
-                Más Filtros
-              </button>
             </div>
           </div>
         </div>
@@ -363,13 +341,15 @@ export default function ResidentsPage() {
                     <Users className="h-6 w-6 text-gray-400" />
                   </div>
                   <div className="ml-3">
-                    <h3 className="text-lg font-semibold text-gray-900">{resident.name}</h3>
-                    <p className="text-sm text-gray-500">{resident.apartment}</p>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {resident.user.first_name} {resident.user.last_name}
+                    </h3>
+                    <p className="text-sm text-gray-500">CI: {resident.ci}</p>
                   </div>
                 </div>
                 <div className="flex space-x-1">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(resident.status)}`}>
-                    {getStatusText(resident.status)}
+                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(resident.activo)}`}>
+                    {getStatusText(resident.activo)}
                   </span>
                 </div>
               </div>
@@ -377,39 +357,33 @@ export default function ResidentsPage() {
               <div className="space-y-2 mb-4">
                 <div className="flex items-center text-sm text-gray-600">
                   <Mail className="h-4 w-4 mr-2" />
-                  {resident.email}
+                  {resident.user.email}
                 </div>
                 <div className="flex items-center text-sm text-gray-600">
                   <Phone className="h-4 w-4 mr-2" />
-                  {resident.phone}
+                  {resident.telefono || 'No registrado'}
                 </div>
                 <div className="flex items-center text-sm text-gray-600">
                   <Calendar className="h-4 w-4 mr-2" />
-                  Ingreso: {new Date(resident.moveInDate).toLocaleDateString()}
+                  Usuario: {resident.user.username}
                 </div>
               </div>
 
               <div className="flex items-center justify-between mb-4">
-                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getRoleColor(resident.role)}`}>
-                  {getRoleText(resident.role)}
+                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getRoleColor(resident.tipo_usuario?.tipo || '')}`}>
+                  {getRoleText(resident.tipo_usuario?.tipo || '')}
                 </span>
-                <div className="flex items-center space-x-3 text-sm text-gray-500">
-                  <div className="flex items-center">
-                    <Car className="h-4 w-4 mr-1" />
-                    {resident.vehicles}
-                  </div>
-                  {resident.pets && (
-                    <div className="flex items-center">
-                      <span className="text-xs">🐕</span>
-                    </div>
-                  )}
+                <div className="text-sm text-gray-500">
+                  {resident.condominio?.nombre || 'Sin condominio'}
                 </div>
               </div>
 
               <div className="border-t border-gray-200 pt-4">
-                <p className="text-xs text-gray-500 mb-2">Contacto de Emergencia:</p>
-                <p className="text-sm font-medium text-gray-700">{resident.emergencyContact.name}</p>
-                <p className="text-sm text-gray-500">{resident.emergencyContact.phone}</p>
+                <p className="text-xs text-gray-500 mb-2">Información adicional:</p>
+                <p className="text-sm text-gray-700">CI: {resident.ci}</p>
+                {resident.telefono && (
+                  <p className="text-sm text-gray-500">Teléfono: {resident.telefono}</p>
+                )}
               </div>
 
               <div className="flex justify-end space-x-2 mt-4 pt-4 border-t border-gray-200">
@@ -427,6 +401,13 @@ export default function ResidentsPage() {
           ))}
         </div>
 
+        {filteredResidents.length === 0 && !loading && (
+          <div className="text-center py-12">
+            <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-500">No se encontraron residentes con los filtros seleccionados</p>
+          </div>
+        )}
+
         {/* Quick Actions Panel */}
         <div className="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Acciones Rápidas</h3>
@@ -435,17 +416,17 @@ export default function ResidentsPage() {
               <div className="flex items-center">
                 <Shield className="h-6 w-6 text-blue-600 mr-3" />
                 <div>
-                  <p className="font-medium text-gray-900">Verificar Identidades</p>
-                  <p className="text-sm text-gray-500">3 pendientes</p>
+                  <p className="font-medium text-gray-900">Gestionar Accesos</p>
+                  <p className="text-sm text-gray-500">{stats.activeResidents} usuarios activos</p>
                 </div>
               </div>
             </div>
             <div className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
               <div className="flex items-center">
-                <Car className="h-6 w-6 text-green-600 mr-3" />
+                <Home className="h-6 w-6 text-green-600 mr-3" />
                 <div>
-                  <p className="font-medium text-gray-900">Gestionar Vehículos</p>
-                  <p className="text-sm text-gray-500">48 registrados</p>
+                  <p className="font-medium text-gray-900">Gestionar Unidades</p>
+                  <p className="text-sm text-gray-500">Asignar residencias</p>
                 </div>
               </div>
             </div>
@@ -453,8 +434,8 @@ export default function ResidentsPage() {
               <div className="flex items-center">
                 <AlertTriangle className="h-6 w-6 text-yellow-600 mr-3" />
                 <div>
-                  <p className="font-medium text-gray-900">Revisar Alertas</p>
-                  <p className="text-sm text-gray-500">2 nuevas</p>
+                  <p className="font-medium text-gray-900">Revisar Perfiles</p>
+                  <p className="text-sm text-gray-500">Validar información</p>
                 </div>
               </div>
             </div>

@@ -230,7 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                color: Colors.blue.shade700, size: 20),
                           const SizedBox(width: 8),
                           Text(
-                            'Datos de Demo',
+                            'Credenciales de Prueba',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.blue.shade700,
@@ -240,7 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Email: residente@demo.com\nContraseña: 123456',
+                        'Email: juan.silva@email.com\nContraseña: Prop2025!',
                         style: TextStyle(fontSize: 12),
                       ),
                     ],

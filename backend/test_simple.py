@@ -13,8 +13,8 @@ def test_simple():
         
         print("\n🔐 Probando API de login...")
         login_data = {
-            "email": "demo@condominio.com",
-            "password": "123456"
+            "email": "juan.silva@email.com",
+            "password": "Prop2025!"
         }
         
         response = requests.post(
@@ -32,7 +32,7 @@ def test_simple():
         else:
             print("⚠️  La API de login tiene problemas")
             
-    except requests.exceptions.ConnectinError as e:
+    except requests.exceptions.ConnectionError as e:
         print(f"❌ Error de conexión: {e}")
     except requests.exceptions.Timeout as e:
         print(f"⏰ Timeout: {e}")
