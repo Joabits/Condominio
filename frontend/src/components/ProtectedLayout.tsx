@@ -23,11 +23,11 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
   // Mostrar loading mientras se verifica la autenticación
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center">
         <div className="text-center">
-          <Building2 className="h-12 w-12 text-blue-600 mx-auto mb-4 animate-pulse" />
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Verificando autenticación...</p>
+          <Building2 className="h-12 w-12 text-primary-600 mx-auto mb-4 animate-pulse" />
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-primary-700">Verificando autenticación...</p>
         </div>
       </div>
     );

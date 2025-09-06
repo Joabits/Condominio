@@ -27,56 +27,56 @@ export default function Home() {
       name: "Dashboard",
       icon: Activity,
       description: "Vista general del condominio",
-      color: "bg-blue-500"
+      color: "bg-primary-500"
     },
     {
       id: "security",
       name: "Seguridad",
       icon: Shield,
       description: "Control de acceso e IA",
-      color: "bg-red-500"
+      color: "bg-error-500"
     },
     {
       id: "finance",
       name: "Finanzas",
       icon: CreditCard,
       description: "Expensas y pagos",
-      color: "bg-green-500"
+      color: "bg-success-500"
     },
     {
       id: "residents",
       name: "Residentes",
       icon: Users,
       description: "Gestión de propietarios",
-      color: "bg-purple-500"
+      color: "bg-primary-600"
     },
     {
       id: "areas",
       name: "Áreas Comunes",
       icon: Calendar,
       description: "Reservas y horarios",
-      color: "bg-yellow-500"
+      color: "bg-warning-500"
     },
     {
       id: "maintenance",
       name: "Mantenimiento",
       icon: Wrench,
       description: "Servicios y reparaciones",
-      color: "bg-orange-500"
+      color: "bg-primary-700"
     },
     {
       id: "cameras",
       name: "Cámaras",
       icon: Camera,
       description: "Monitoreo en tiempo real",
-      color: "bg-indigo-500"
+      color: "bg-primary-800"
     },
     {
       id: "notifications",
       name: "Comunicados",
       icon: Bell,
       description: "Avisos y alertas",
-      color: "bg-pink-500"
+      color: "bg-primary-400"
     }
   ];
 
@@ -140,49 +140,50 @@ export default function Home() {
 
   return (
     <ProtectedLayout>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Panel de Administración - Condominio Buganvillas
-          </h2>
-          <p className="text-lg text-gray-600">
-            Sistema inteligente de administración con IA y visión artificial
-          </p>
-        </div>
+      <div className="min-h-screen bg-primary-gradient-soft">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Welcome Section */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-primary-900 mb-2">
+              Panel de Administración - Condominio Buganvillas
+            </h2>
+            <p className="text-lg text-primary-700">
+              Sistema inteligente de administración con IA y visión artificial
+            </p>
+          </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">{stat.name}</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">{stat.value}</p>
-                </div>
-                <div className={`flex items-center text-sm ${
-                  stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  <TrendingUp className="h-4 w-4 mr-1" />
-                  {stat.change}
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-sm p-6 border border-primary-200 hover:shadow-lg transition-shadow">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-primary-600">{stat.name}</p>
+                    <p className="text-2xl font-bold text-primary-900 mt-1">{stat.value}</p>
+                  </div>
+                  <div className={`flex items-center text-sm ${
+                    stat.changeType === 'positive' ? 'text-success-600' : 'text-error-600'
+                  }`}>
+                    <TrendingUp className="h-4 w-4 mr-1" />
+                    {stat.change}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Modules Grid */}
-          <div className="lg:col-span-2">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Módulos del Sistema</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {modules.map((module) => {
-                const IconComponent = module.icon;
-                const moduleHref = module.id === 'security' ? '/security' 
-                  : module.id === 'finance' ? '/finance'
-                  : module.id === 'residents' ? '/residents'
-                  : module.id === 'maintenance' ? '/maintenance'
-                  : module.id === 'areas' ? '/areas'
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Modules Grid */}
+            <div className="lg:col-span-2">
+              <h3 className="text-xl font-semibold text-primary-900 mb-6">Módulos del Sistema</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {modules.map((module) => {
+                  const IconComponent = module.icon;
+                  const moduleHref = module.id === 'security' ? '/security' 
+                    : module.id === 'finance' ? '/finance'
+                    : module.id === 'residents' ? '/residents'
+                    : module.id === 'maintenance' ? '/maintenance'
+                    : module.id === 'areas' ? '/areas'
                   : '#';
                 
                 const isActive = moduleHref !== '#';
@@ -191,17 +192,17 @@ export default function Home() {
                   <Link
                     key={module.id}
                     href={moduleHref}
-                    className={`bg-white rounded-xl shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow cursor-pointer group ${!isActive ? 'opacity-75' : ''}`}
+                    className={`bg-white rounded-xl shadow-sm p-6 border border-primary-200 hover:shadow-lg transition-all cursor-pointer group hover:border-primary-300 ${!isActive ? 'opacity-75' : ''}`}
                   >
                     <div className="flex items-center space-x-4">
                       <div className={`${module.color} p-3 rounded-lg group-hover:scale-110 transition-transform`}>
                         <IconComponent className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                        <h4 className="text-lg font-semibold text-primary-900 group-hover:text-primary-600 transition-colors">
                           {module.name}
                         </h4>
-                        <p className="text-sm text-gray-600">{module.description}</p>
+                        <p className="text-sm text-primary-600">{module.description}</p>
                       </div>
                     </div>
                   </Link>
@@ -212,8 +213,8 @@ export default function Home() {
 
           {/* Recent Activities */}
           <div className="lg:col-span-1">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Actividad Reciente</h3>
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+            <h3 className="text-xl font-semibold text-primary-900 mb-6">Actividad Reciente</h3>
+            <div className="bg-white rounded-xl shadow-sm border border-primary-200">
               <div className="p-6">
                 <div className="space-y-4">
                   {recentActivities.map((activity, index) => {
@@ -224,41 +225,41 @@ export default function Home() {
                           <IconComponent className="h-4 w-4" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm text-gray-900">{activity.message}</p>
-                          <p className="text-xs text-gray-500">{activity.time}</p>
+                          <p className="text-sm text-primary-900">{activity.message}</p>
+                          <p className="text-xs text-primary-500">{activity.time}</p>
                         </div>
                       </div>
                     );
                   })}
                 </div>
               </div>
-              <div className="border-t border-gray-200 px-6 py-3">
-                <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+              <div className="border-t border-primary-200 px-6 py-3">
+                <button className="text-sm text-primary-600 hover:text-primary-700 font-medium">
                   Ver todas las actividades →
                 </button>
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="mt-6 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Acciones Rápidas</h4>
+            <div className="mt-6 bg-white rounded-xl shadow-sm border border-primary-200 p-6">
+              <h4 className="text-lg font-semibold text-primary-900 mb-4">Acciones Rápidas</h4>
               <div className="space-y-3">
-                <button className="w-full text-left p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                <button className="w-full text-left p-3 rounded-lg bg-primary-50 hover:bg-primary-100 transition-colors">
                   <div className="flex items-center space-x-3">
-                    <Bell className="h-5 w-5 text-blue-600" />
-                    <span className="text-sm font-medium text-blue-900">Nuevo Comunicado</span>
+                    <Bell className="h-5 w-5 text-primary-600" />
+                    <span className="text-sm font-medium text-primary-900">Nuevo Comunicado</span>
                   </div>
                 </button>
-                <button className="w-full text-left p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
+                <button className="w-full text-left p-3 rounded-lg bg-success-50 hover:bg-success-100 transition-colors">
                   <div className="flex items-center space-x-3">
-                    <CreditCard className="h-5 w-5 text-green-600" />
-                    <span className="text-sm font-medium text-green-900">Generar Expensas</span>
+                    <CreditCard className="h-5 w-5 text-success-600" />
+                    <span className="text-sm font-medium text-success-900">Generar Expensas</span>
                   </div>
                 </button>
-                <button className="w-full text-left p-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
+                <button className="w-full text-left p-3 rounded-lg bg-primary-100 hover:bg-primary-200 transition-colors">
                   <div className="flex items-center space-x-3">
-                    <Users className="h-5 w-5 text-purple-600" />
-                    <span className="text-sm font-medium text-purple-900">Agregar Residente</span>
+                    <Users className="h-5 w-5 text-primary-700" />
+                    <span className="text-sm font-medium text-primary-800">Agregar Residente</span>
                   </div>
                 </button>
               </div>
@@ -267,26 +268,27 @@ export default function Home() {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-sm p-8 text-white">
+        <div className="mt-12 bg-primary-gradient rounded-xl shadow-sm p-8 text-white">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-semibold mb-2">🤖 Inteligencia Artificial Activa</h3>
-              <p className="text-blue-100">
+              <p className="text-primary-100">
                 Reconocimiento facial, detección de vehículos y predicción de morosidad funcionando
               </p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-center">
                 <p className="text-2xl font-bold">99.8%</p>
-                <p className="text-sm text-blue-100">Precisión IA</p>
+                <p className="text-sm text-primary-200">Precisión IA</p>
               </div>
               <div className="text-center">
                 <p className="text-2xl font-bold">24/7</p>
-                <p className="text-sm text-blue-100">Monitoreo</p>
+                <p className="text-sm text-primary-200">Monitoreo</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </ProtectedLayout>
   );

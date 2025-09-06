@@ -98,7 +98,8 @@ class AuthService {
   // Iniciar sesión
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login/`, {
+      // Usar endpoint específico para aplicación web (solo administradores)
+      const response = await fetch(`${API_BASE_URL}/api/auth/web/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,8 +108,36 @@ class AuthService {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Error al iniciar sesión');
+        let errorMessage = 'Error al iniciar sesión';
+        
+        try {
+          const errorData = await response.json();
+          console.error('Error response:', errorData);
+          
+          // Si es un error 403 (Forbidden), redirigir a página de acceso denegado
+          if (response.status === 403) {
+            if (typeof window !== 'undefined') {
+              window.location.href = '/access-denied';
+            }
+            throw new Error(errorData.error || 'Acceso denegado');
+          }
+          
+          // Manejar diferentes tipos de errores
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
+          } else if (errorData.non_field_errors && Array.isArray(errorData.non_field_errors)) {
+            errorMessage = errorData.non_field_errors[0];
+          } else if (errorData.detail) {
+            errorMessage = errorData.detail;
+          }
+        } catch (parseError) {
+          console.error('Error parsing response:', parseError);
+          errorMessage = `Error del servidor (${response.status})`;
+        }
+        
+        throw new Error(errorMessage);
       }
 
       const data: AuthResponse = await response.json();

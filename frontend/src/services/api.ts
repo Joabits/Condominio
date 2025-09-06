@@ -189,10 +189,17 @@ class ApiService {
 
   // Usuarios y Residentes
   async getUsuarios(): Promise<PerfilUsuario[]> {
-    const response = await fetch(`${this.baseURL}/api/usuarios/`, {
-      headers: this.getHeaders(),
-    });
-    return this.handleResponse(response);
+    try {
+      const response = await fetch(`${this.baseURL}/api/usuarios/`, {
+        headers: this.getHeaders(),
+      });
+      const data = await this.handleResponse(response);
+      // Asegurar que siempre retorne un array
+      return Array.isArray(data) ? data : [];
+    } catch (error) {
+      console.error('Error fetching usuarios:', error);
+      return [];
+    }
   }
 
   async createUsuario(userData: Partial<PerfilUsuario>): Promise<PerfilUsuario> {

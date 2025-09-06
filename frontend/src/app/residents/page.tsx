@@ -55,10 +55,12 @@ export default function ResidentsPage() {
     try {
       setLoading(true);
       const data = await apiService.getUsuarios();
-      setResidents(data);
+      // Asegurar que data es un array
+      setResidents(Array.isArray(data) ? data : []);
       setError(null);
     } catch (err) {
       setError('Error al cargar residentes');
+      setResidents([]); // Asegurar que residents sea un array vacío en caso de error
       console.error('Error loading residents:', err);
     } finally {
       setLoading(false);
@@ -70,16 +72,16 @@ export default function ResidentsPage() {
       const data = await apiService.getEstadisticas();
       if (data && data.residentes) {
         setStats({
-          totalResidents: data.residentes.total || residents.length,
-          activeResidents: data.residentes.activos || residents.filter(r => r.activo).length,
+          totalResidents: data.residentes.total || (residents || []).length,
+          activeResidents: data.residentes.activos || (residents || []).filter(r => r.activo).length,
           newThisMonth: data.residentes.nuevos_mes || 0,
           occupancyRate: data.residentes.tasa_ocupacion || 0
         });
       } else {
         // Estadísticas calculadas localmente
         setStats({
-          totalResidents: residents.length,
-          activeResidents: residents.filter(r => r.activo).length,
+          totalResidents: (residents || []).length,
+          activeResidents: (residents || []).filter(r => r.activo).length,
           newThisMonth: 0,
           occupancyRate: 0
         });
@@ -88,8 +90,8 @@ export default function ResidentsPage() {
       console.error('Error loading stats:', err);
       // Estadísticas calculadas localmente
       setStats({
-        totalResidents: residents.length,
-        activeResidents: residents.filter(r => r.activo).length,
+        totalResidents: (residents || []).length,
+        activeResidents: (residents || []).filter(r => r.activo).length,
         newThisMonth: 0,
         occupancyRate: 0
       });
@@ -142,7 +144,7 @@ export default function ResidentsPage() {
     return new Date(dateString).toLocaleDateString('es-ES');
   };
 
-  const filteredResidents = residents.filter(resident => {
+  const filteredResidents = (residents || []).filter(resident => {
     const isActive = resident.activo;
     const matchesStatus = selectedFilter === 'all' || 
                          (selectedFilter === 'active' && isActive) ||

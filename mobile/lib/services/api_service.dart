@@ -130,7 +130,7 @@ class ApiService {
     
     final response = await _makeRequest(
       'POST',
-      '/api/auth/login/',
+      '/api/auth/mobile/login/',  // Endpoint específico para aplicación móvil
       body: {
         'email': email,
         'password': password,

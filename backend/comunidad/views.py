@@ -19,13 +19,120 @@ from .serializers import *
 
 
 # =====================================
-# AUTENTICACIÓN
+# AUTENTICACIÓN MÓVIL (Residentes)
+# =====================================
+
+class LoginMovilAPIView(APIView):
+    """Login específico para aplicación móvil - Solo residentes, inquilinos, personal"""
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        print(f"DEBUG: Mobile Login request data: {request.data}")
+        
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            
+            # Obtener perfil del usuario
+            try:
+                perfil = PerfilUsuario.objects.get(user=user)
+                
+                # VALIDAR QUE SOLO USUARIOS MÓVILES PUEDAN ACCEDER
+                tipos_movil_permitidos = ['PROPIETARIO', 'INQUILINO', 'SEGURIDAD', 'MANTENIMIENTO']
+                if perfil.tipo_usuario.tipo not in tipos_movil_permitidos:
+                    return Response({
+                        'error': 'Este tipo de usuario no tiene acceso a la aplicación móvil'
+                    }, status=status.HTTP_403_FORBIDDEN)
+                
+                perfil_data = PerfilUsuarioSerializer(perfil).data
+            except PerfilUsuario.DoesNotExist:
+                return Response({
+                    'error': 'Perfil de usuario no encontrado'
+                }, status=status.HTTP_404_NOT_FOUND)
+            
+            # Generar tokens JWT
+            refresh = RefreshToken.for_user(user)
+            access_token = refresh.access_token
+            
+            # Actualizar último acceso
+            perfil.ultimo_acceso = timezone.now()
+            perfil.save()
+            
+            return Response({
+                'access_token': str(access_token),
+                'refresh_token': str(refresh),
+                'user': perfil_data,
+                'message': 'Inicio de sesión móvil exitoso',
+                'platform': 'mobile'
+            }, status=status.HTTP_200_OK)
+        
+        print(f"DEBUG: Mobile Serializer errors: {serializer.errors}")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# =====================================
+# AUTENTICACIÓN WEB (Administración)
+# =====================================
+
+class LoginWebAPIView(APIView):
+    """Login específico para aplicación web - Solo administradores"""
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            
+            # Obtener perfil del usuario
+            try:
+                perfil = PerfilUsuario.objects.get(user=user)
+                
+                # VALIDAR QUE SOLO ADMINISTRADORES PUEDAN ACCEDER A LA WEB
+                tipos_web_permitidos = ['ADMINISTRADOR']
+                if perfil.tipo_usuario.tipo not in tipos_web_permitidos:
+                    return Response({
+                        'error': 'Solo administradores pueden acceder a la aplicación web',
+                        'suggestion': 'Use la aplicación móvil para residentes'
+                    }, status=status.HTTP_403_FORBIDDEN)
+                
+                perfil_data = PerfilUsuarioSerializer(perfil).data
+            except PerfilUsuario.DoesNotExist:
+                return Response({
+                    'error': 'Perfil de usuario no encontrado'
+                }, status=status.HTTP_404_NOT_FOUND)
+            
+            # Generar tokens JWT
+            refresh = RefreshToken.for_user(user)
+            access_token = refresh.access_token
+            
+            # Actualizar último acceso
+            perfil.ultimo_acceso = timezone.now()
+            perfil.save()
+            
+            return Response({
+                'access_token': str(access_token),
+                'refresh_token': str(refresh),
+                'user': perfil_data,
+                'message': 'Inicio de sesión web exitoso',
+                'platform': 'web'
+            }, status=status.HTTP_200_OK)
+        
+        print(f"DEBUG: Web Serializer errors: {serializer.errors}")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# =====================================
+# AUTENTICACIÓN LEGACY (Mantener compatibilidad)
 # =====================================
 
 class LoginAPIView(APIView):
     permission_classes = [AllowAny]
     
     def post(self, request):
+        print(f"DEBUG: Login request data: {request.data}")
+        print(f"DEBUG: Content type: {request.content_type}")
+        print(f"DEBUG: Headers: {dict(request.headers)}")
+        
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.validated_data['user']
@@ -54,6 +161,7 @@ class LoginAPIView(APIView):
                 'message': 'Inicio de sesión exitoso'
             }, status=status.HTTP_200_OK)
         
+        print(f"DEBUG: Serializer errors: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -714,7 +822,7 @@ class EstadisticasAPIView(APIView):
         total_ingresos_mes = Pago.objects.filter(
             fecha_pago__month=timezone.now().month,
             fecha_pago__year=timezone.now().year
-        ).aggregate(total=Sum('monto'))['total'] or 0
+        ).aggregate(total=Sum('monto_pagado'))['total'] or 0
         
         # Estadísticas de seguridad
         alertas_mes = AlertaSeguridad.objects.filter(

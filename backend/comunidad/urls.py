@@ -28,6 +28,11 @@ urlpatterns = [
     # =====================================
     # AUTENTICACIÓN
     # =====================================
+    # Endpoints específicos por plataforma
+    path('api/auth/mobile/login/', views.LoginMovilAPIView.as_view(), name='login-mobile'),
+    path('api/auth/web/login/', views.LoginWebAPIView.as_view(), name='login-web'),
+    
+    # Endpoints legacy (mantener compatibilidad)
     path('api/auth/login/', views.LoginAPIView.as_view(), name='login'),
     path('api/auth/logout/', views.LogoutAPIView.as_view(), name='logout'),
     path('api/auth/registro/', views.RegistroAPIView.as_view(), name='registro'),
