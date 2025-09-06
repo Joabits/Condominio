@@ -5,6 +5,15 @@ from .api_views import api_home, home_view
 
 # Router para ViewSets de DRF
 router = DefaultRouter()
+router.register(r'usuarios', views.UsuarioViewSet)
+router.register(r'unidades', views.UnidadViewSet)
+router.register(r'areas-comunes', views.AreaComunViewSet)
+router.register(r'camaras', views.CamaraSeguridadViewSet)
+router.register(r'alertas', views.AlertaSeguridadViewSet)
+router.register(r'pagos', views.PagoViewSet)
+router.register(r'reservas', views.ReservaAreaComunViewSet)
+router.register(r'visitantes', views.VisitanteViewSet)
+router.register(r'vehiculos', views.VehiculoViewSet)
 
 urlpatterns = [
     # URLs de la API REST
@@ -50,6 +59,11 @@ urlpatterns = [
     # PERFIL DE USUARIO
     # =====================================
     path('api/perfil/', views.PerfilAPIView.as_view(), name='perfil'),
+    
+    # =====================================
+    # ESTADÍSTICAS (PARA FRONTEND WEB)
+    # =====================================
+    path('api/estadisticas/', views.EstadisticasAPIView.as_view(), name='estadisticas'),
     
     # =====================================
     # URLS PARA FUTURAS IMPLEMENTACIONES

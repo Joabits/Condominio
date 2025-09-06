@@ -43,7 +43,7 @@
 - 7 usuarios (6 activos + 1 admin)
 - 18 unidades residenciales
 - 6 áreas comunes
-- Condominio: "Residencial Las Torres"
+- Condominio: "Condominio Buganvillas"
 - 54 registros en 28 tablas
 
 ### 🎯 CARACTERÍSTICAS IMPLEMENTADAS

@@ -634,3 +634,119 @@ class QuickActionsAPIView(APIView):
         ]
         
         return Response(actions, status=status.HTTP_200_OK)
+
+
+# =====================================
+# VIEWSETS PARA FRONTEND WEB
+# =====================================
+
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = PerfilUsuario.objects.all()
+    serializer_class = PerfilUsuarioSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        queryset = PerfilUsuario.objects.select_related('user', 'condominio', 'tipo_usuario').all()
+        return queryset
+
+class UnidadViewSet(viewsets.ModelViewSet):
+    queryset = Unidad.objects.all()
+    serializer_class = UnidadSerializer
+    permission_classes = [IsAuthenticated]
+
+class AreaComunViewSet(viewsets.ModelViewSet):
+    queryset = AreaComun.objects.all()
+    serializer_class = AreaComunSerializer
+    permission_classes = [IsAuthenticated]
+
+class CamaraSeguridadViewSet(viewsets.ModelViewSet):
+    queryset = CamaraSeguridad.objects.all()
+    serializer_class = CamaraSeguridadSerializer
+    permission_classes = [IsAuthenticated]
+
+class AlertaSeguridadViewSet(viewsets.ModelViewSet):
+    queryset = AlertaSeguridad.objects.all()
+    serializer_class = AlertaSeguridadSerializer
+    permission_classes = [IsAuthenticated]
+
+class PagoViewSet(viewsets.ModelViewSet):
+    queryset = Pago.objects.all()
+    serializer_class = PagoSerializer
+    permission_classes = [IsAuthenticated]
+
+class ReservaAreaComunViewSet(viewsets.ModelViewSet):
+    queryset = ReservaAreaComun.objects.all()
+    serializer_class = ReservaAreaComunSerializer
+    permission_classes = [IsAuthenticated]
+
+class VisitanteViewSet(viewsets.ModelViewSet):
+    queryset = Visitante.objects.all()
+    serializer_class = VisitanteSerializer
+    permission_classes = [IsAuthenticated]
+
+class VehiculoViewSet(viewsets.ModelViewSet):
+    queryset = Vehiculo.objects.all()
+    serializer_class = VehiculoSerializer
+    permission_classes = [IsAuthenticated]
+
+# =====================================
+# API PARA ESTADÍSTICAS
+# =====================================
+
+class EstadisticasAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        # Estadísticas de residentes
+        total_residentes = PerfilUsuario.objects.count()
+        residentes_activos = PerfilUsuario.objects.filter(activo=True).count()
+        
+        # Estadísticas de unidades
+        total_unidades = Unidad.objects.count()
+        unidades_ocupadas = Unidad.objects.filter(activa=True).count()
+        
+        # Estadísticas de pagos
+        pagos_mes_actual = Pago.objects.filter(
+            fecha_pago__month=timezone.now().month,
+            fecha_pago__year=timezone.now().year
+        ).count()
+        
+        total_ingresos_mes = Pago.objects.filter(
+            fecha_pago__month=timezone.now().month,
+            fecha_pago__year=timezone.now().year
+        ).aggregate(total=Sum('monto'))['total'] or 0
+        
+        # Estadísticas de seguridad
+        alertas_mes = AlertaSeguridad.objects.filter(
+            fecha_hora__month=timezone.now().month,
+            fecha_hora__year=timezone.now().year
+        ).count()
+        
+        # Estadísticas de mantenimiento
+        solicitudes_abiertas = 0  # Sin modelo de SolicitudMantenimiento por ahora
+        
+        return Response({
+            'residentes': {
+                'total': total_residentes,
+                'activos': residentes_activos,
+                'nuevos_mes': 0,  # Calcular nuevos del mes si es necesario
+                'tasa_ocupacion': (unidades_ocupadas / total_unidades * 100) if total_unidades > 0 else 0
+            },
+            'unidades': {
+                'total': total_unidades,
+                'ocupadas': unidades_ocupadas,
+                'disponibles': total_unidades - unidades_ocupadas
+            },
+            'finanzas': {
+                'pagos_mes': pagos_mes_actual,
+                'ingresos_mes': float(total_ingresos_mes),
+                'morosidad': 0  # Calcular si es necesario
+            },
+            'seguridad': {
+                'alertas_mes': alertas_mes,
+                'camaras_activas': CamaraSeguridad.objects.filter(activa=True).count()
+            },
+            'mantenimiento': {
+                'solicitudes_abiertas': solicitudes_abiertas
+            }
+        }, status=status.HTTP_200_OK)

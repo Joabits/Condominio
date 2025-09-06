@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Navigation from '../../components/Navigation';
 import apiService, { PerfilUsuario } from '../../services/api';
 import { 
   Users, 
@@ -192,8 +193,10 @@ export default function ResidentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      
+      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de Residentes</h1>
@@ -246,7 +249,7 @@ export default function ResidentsPage() {
             </div>
             <div className="mt-4 flex items-center">
               <MapPin className="h-4 w-4 text-gray-500 mr-1" />
-              <span className="text-sm text-gray-600">Residencial Las Torres</span>
+              <span className="text-sm text-gray-600">Condominio Buganvillas</span>
             </div>
           </div>
 

@@ -2,7 +2,7 @@
 
 ## 🏢 Información del Condominio
 
-**Nombre:** Residencial Las Torres  
+**Nombre:** Condominio Buganvillas  
 **Ubicación:** Av. Banzer Km 9, Entre 4to y 5to Anillo, Santa Cruz de la Sierra  
 **Teléfono:** +591 3 123-4567  
 **Email:** administracion@lastorres.com  

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import ProtectedLayout from "../components/ProtectedLayout";
 import { 
   Building2, 
   Users, 
@@ -138,38 +139,12 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Building2 className="h-8 w-8 text-blue-600" />
-              <h1 className="ml-3 text-2xl font-bold text-gray-900">
-                Smart Condominium
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Bell className="h-6 w-6 text-gray-400 hover:text-gray-600 cursor-pointer" />
-                <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full"></span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="h-8 w-8 bg-blue-600 rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">A</span>
-                </div>
-                <span className="text-sm font-medium text-gray-700">Admin</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <ProtectedLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Bienvenido al Condominio Los Jardines
+            Panel de Administración - Condominio Buganvillas
           </h2>
           <p className="text-lg text-gray-600">
             Sistema inteligente de administración con IA y visión artificial
@@ -313,6 +288,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </ProtectedLayout>
   );
 }
