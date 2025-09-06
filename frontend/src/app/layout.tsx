@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
+import NavShell from "@/components/NavShell";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,11 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
         <AuthProvider>
-          {children}
+          <NavShell>{children}</NavShell>
         </AuthProvider>
       </body>
     </html>

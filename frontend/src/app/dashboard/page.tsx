@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import ProtectedLayout from "../../components/ProtectedLayout";
 import { 
   Building2, 
   Users, 
@@ -139,7 +138,6 @@ export default function DashboardPage() {
   ];
 
   return (
-    <ProtectedLayout>
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
@@ -319,6 +317,5 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    </ProtectedLayout>
   );
 }

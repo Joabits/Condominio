@@ -86,8 +86,10 @@ export default function Navigation() {
   };
 
   const currentUser = user ? {
-    name: `${user.first_name} ${user.last_name}`.trim(),
-    email: user.email,
+    name: [user.first_name, user.last_name].filter(Boolean).join(' ') 
+      || user?.email 
+      || 'Usuario',
+    email: user.email || 'usuario@condominio.com',
     role: user.perfil?.tipo_usuario?.descripcion || 'Usuario',
     avatar: undefined
   } : defaultUser;

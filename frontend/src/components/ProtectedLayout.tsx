@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
-import Navigation from '@/components/Navigation';
 import { Building2 } from 'lucide-react';
 
 interface ProtectedLayoutProps {
@@ -38,13 +37,6 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
     return null;
   }
 
-  // Si está autenticado, mostrar el layout con navegación
-  return (
-    <>
-      <Navigation />
-      <main className="lg:ml-0">
-        {children}
-      </main>
-    </>
-  );
+  // Si está autenticado, mostrar el contenido protegido
+  return <>{children}</>;
 }
